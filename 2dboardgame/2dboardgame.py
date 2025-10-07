@@ -10,7 +10,10 @@ class Board:
         for i in range(width):
             self.board.append([0]*width)
         for k in range(width):
-            print(self.board[k])
+            printable = ''
+            for y in self.board[k]:
+                printable = printable + str(y) + '  '
+            print(printable)
     def turn(self, width):
         self.width = width
         print("It is Player "+ str(self.player_turn) +"'s turn.")
@@ -32,11 +35,11 @@ class Board:
                 else:
                     break
             print("Player " + str(self.player_turn) + " is playing at row: " + str(self.row) + ", column: " + str(self.column))
-            if self.board[self.row-1][self.column-1] != 0:
+            if self.board[self.row][self.column] != 0:
                 print("This spot is already taken, please enter a valid unoccupied space.")
             else:
                 break
-        self.board[self.row-1][self.column-1] = self.player_turn
+        self.board[self.row][self.column] = self.player_turn
 
 
         run_again = True
@@ -53,12 +56,137 @@ class Board:
             self.player_turn = 1
         if run_again:
             for k in range(self.width):
-                print(self.board[k])
+                printable = ''
+                for y in self.board[k]:
+                    printable = printable + str(y) + '  '
+                print(printable)
+
             self.turn(width)
 
 
     def check_winner(self):
-        winner_found = False
+        try:
+            if self.board[self.row][self.column] == self.board[self.row][self.column-1] and self.board[self.row][self.column] == self.board[self.row][self.column-2] and self.board[self.row][self.column] == self.board[self.row][self.column-3] and self.board[self.row][self.column] == self.board[self.row][self.column-4] and self.board[self.row][self.column] == self.board[self.row][self.column-5]:
+                self.winner_found = True
+        except IndexError or self.winner_found == False:
+            try:
+                if self.board[self.row][self.column] == self.board[self.row][self.column+1] and self.board[self.row][self.column] == self.board[self.row][self.column-1] and self.board[self.row][self.column] == self.board[self.row][self.column-2] and self.board[self.row][self.column] == self.board[self.row][self.column-3] and self.board[self.row][self.column] == self.board[self.row][self.column-4]:
+                    self.winner_found = True
+            except IndexError or self.winner_found == False:
+                try:
+                    if self.board[self.row][self.column] == self.board[self.row][self.column+2] and self.board[self.row][self.column] == self.board[self.row][self.column+1] and self.board[self.row][self.column] == self.board[self.row][self.column-1] and self.board[self.row][self.column] == self.board[self.row][self.column-2] and self.board[self.row][self.column] == self.board[self.row][self.column-3]:
+                        self.winner_found = True
+                except IndexError or self.winner_found == False:
+                    try:
+                        if self.board[self.row][self.column] == self.board[self.row][self.column+3] and self.board[self.row][self.column] == self.board[self.row][self.column+2] and self.board[self.row][self.column] == self.board[self.row][self.column+1] and self.board[self.row][self.column] == self.board[self.row][self.column-1] and self.board[self.row][self.column] == self.board[self.row][self.column-2]:
+                            self.winner_found = True
+                    except IndexError or self.winner_found == False:
+                        try:
+                            if self.board[self.row][self.column] == self.board[self.row][self.column+4] and self.board[self.row][self.column] == self.board[self.row][self.column+3] and self.board[self.row][self.column] == self.board[self.row][self.column+2] and self.board[self.row][self.column] == self.board[self.row][self.column+1] and self.board[self.row][self.column] == self.board[self.row][self.column-1]:
+                                self.winner_found = True
+                        except IndexError or self.winner_found == False:
+                            try:
+                                if self.board[self.row][self.column] == self.board[self.row][self.column+5] and self.board[self.row][self.column] == self.board[self.row][self.column+4] and self.board[self.row][self.column] == self.board[self.row][self.column+3] and self.board[self.row][self.column] == self.board[self.row][self.column+2] and self.board[self.row][self.column] == self.board[self.row][self.column+1]:
+                                    self.winner_found = True
+                            except IndexError or self.winner_found == False:
+                                pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row-1][self.column] and self.board[self.row][self.column] == self.board[self.row-2][self.column] and self.board[self.row][self.column] == self.board[self.row-3][self.column] and self.board[self.row-4][self.column] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-5][self.column]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+1][self.column] and self.board[self.row][self.column] == self.board[self.row-1][self.column] and self.board[self.row][self.column] == self.board[self.row-2][self.column] and self.board[self.row-3][self.column] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-4][self.column]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+2][self.column] and self.board[self.row][self.column] == self.board[self.row+1][self.column] and self.board[self.row][self.column] == self.board[self.row-1][self.column] and self.board[self.row-2][self.column] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-3][self.column]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+3][self.column] and self.board[self.row][self.column] == self.board[self.row+2][self.column] and self.board[self.row][self.column] == self.board[self.row+1][self.column] and self.board[self.row-1][self.column] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-2][self.column]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+4][self.column] and self.board[self.row][self.column] == self.board[self.row+3][self.column] and self.board[self.row][self.column] == self.board[self.row+2][self.column] and self.board[self.row+1][self.column] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-1][self.column]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+5][self.column] and self.board[self.row][self.column] == self.board[self.row+4][self.column] and self.board[self.row][self.column] == self.board[self.row+3][self.column] and self.board[self.row+2][self.column] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row+1][self.column]:
+                self.winner_found = True
+        except IndexError:
+            pass
+
+        try:
+            if self.board[self.row][self.column] == self.board[self.row-1][self.column+1] and self.board[self.row][self.column] == self.board[self.row-2][self.column+2] and self.board[self.row][self.column] == self.board[self.row-3][self.column+3] and self.board[self.row-4][self.column+4] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-5][self.column+5]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+1][self.column-1] and self.board[self.row][self.column] == self.board[self.row-1][self.column+1] and self.board[self.row][self.column] == self.board[self.row-2][self.column+2] and self.board[self.row-3][self.column+3] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-4][self.column+4]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+2][self.column-2] and self.board[self.row][self.column] == self.board[self.row+1][self.column-1] and self.board[self.row][self.column] == self.board[self.row-1][self.column+1] and self.board[self.row-2][self.column+2] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-3][self.column+3]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+3][self.column-3] and self.board[self.row][self.column] == self.board[self.row+2][self.column-2] and self.board[self.row][self.column] == self.board[self.row+1][self.column-1] and self.board[self.row-1][self.column+1] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-2][self.column+2]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+4][self.column-4] and self.board[self.row][self.column] == self.board[self.row+3][self.column-3] and self.board[self.row][self.column] == self.board[self.row+2][self.column-2] and self.board[self.row+1][self.column-1] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-1][self.column+1]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+5][self.column-5] and self.board[self.row][self.column] == self.board[self.row+4][self.column-4] and self.board[self.row][self.column] == self.board[self.row+3][self.column-3] and self.board[self.row+2][self.column-2] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row+1][self.column-1]:
+                self.winner_found = True
+        except IndexError:
+            pass
+
+        try:
+            if self.board[self.row][self.column] == self.board[self.row-1][self.column-1] and self.board[self.row][self.column] == self.board[self.row-2][self.column-2] and self.board[self.row][self.column] == self.board[self.row-3][self.column-3] and self.board[self.row-4][self.column-4] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-5][self.column-5]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+1][self.column+1] and self.board[self.row][self.column] == self.board[self.row-1][self.column-1] and self.board[self.row][self.column] == self.board[self.row-2][self.column-2] and self.board[self.row-3][self.column-3] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-4][self.column-4]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+2][self.column+2] and self.board[self.row][self.column] == self.board[self.row+1][self.column+1] and self.board[self.row][self.column] == self.board[self.row-1][self.column-1] and self.board[self.row-2][self.column-2] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-3][self.column-3]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+3][self.column+3] and self.board[self.row][self.column] == self.board[self.row+2][self.column+2] and self.board[self.row][self.column] == self.board[self.row+1][self.column+1] and self.board[self.row-1][self.column-1] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-2][self.column-2]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+4][self.column+4] and self.board[self.row][self.column] == self.board[self.row+3][self.column+3] and self.board[self.row][self.column] == self.board[self.row+2][self.column+2] and self.board[self.row+1][self.column+1] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row-1][self.column-1]:
+                self.winner_found = True
+        except IndexError:
+            pass
+        try:
+            if self.board[self.row][self.column] == self.board[self.row+5][self.column+5] and self.board[self.row][self.column] == self.board[self.row+4][self.column+4] and self.board[self.row][self.column] == self.board[self.row+3][self.column+3] and self.board[self.row+2][self.column+2] == self.board[self.row][self.column] and self.board[self.row][self.column] == self.board[self.row+1][self.column+1]:
+                self.winner_found = True
+        except IndexError:
+            pass
+
+
+
+
+
 
 
 b = Board(10)
