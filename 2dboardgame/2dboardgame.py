@@ -1,5 +1,5 @@
 
-
+ 
 print("Rules for Connect Wu!")
 print("Two Players will alternate in turns and the first to get 5 of their pieces in a row will win. You can get 5 in a row through diagonal, vertical, or horizontal direction.")
 
