@@ -64,7 +64,7 @@ if version == 'c':
     from graphics import *
 
     win = GraphWin("My Fractal", 2000, 1500)
-    d = 9
+    d = 10
     list = []
     for i in range(d):
         if len(list) == 0:
