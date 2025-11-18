@@ -64,13 +64,13 @@ if version == 'c':
     from graphics import *
 
     win = GraphWin("My Fractal", 2000, 1500)
-    d = 10
+    d = 3
     list = []
     for i in range(d):
         if len(list) == 0:
-            list.append(1)
+            list.append(2)
         elif len(list) == 1:
-            list.append(1)
+            list.append(5)
         else:
             val1 = int(list[i - 2])
             val2 = int(list[i - 1])
@@ -83,9 +83,8 @@ if version == 'c':
             return
         else:
             random_angle = random.randint(a-45,a+45)
-            new_point = find_point(Point(x1, y1),d*20,random_angle)
-            width = d
-            Line(Point(x1, y1), new_point)._draw(win, {"width": width,"fill":'green'})
+            new_point = find_point(Point(x1, y1),d*10,random_angle)
+            Line(Point(x1, y1), new_point).draw(win)
             for i in range(list[-d+1]):
                 fractal_fib(d-1,new_point.getX(),new_point.getY(),random_angle,list)
 
