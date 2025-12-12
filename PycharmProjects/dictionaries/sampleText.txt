@@ -1,0 +1,1 @@
+The left and right children of the Node are the two Nodes that this Node points to. You can visualize this relationship with the following diagram:
