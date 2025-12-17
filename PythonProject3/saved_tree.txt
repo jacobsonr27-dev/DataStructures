@@ -1,0 +1,1 @@
+Tree: {Does it have 4 legs?, Left: {Does it have pointy ears?, Left: {cat}, Right: {dog}}, Right: {Can it swim?, Left: {fish}, Right: {parrot}}}

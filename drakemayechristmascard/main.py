@@ -51,9 +51,21 @@ yertle4.setposition(-100,0)
 yertle4.setposition(-800,0)
 
 
+turt = turtle.Turtle()
+turt.color("orange", "yellow")
+turt.begin_fill()
+turt.forward(100)
+turt.right(120)
+turt.forward(100)
+turt.right(120)
+turt.forward(100)
+turt.end_fill()
 
 turtle.done()
 yertle.setposition(0,0)
 
 yertle.down()
 yertle.goto()
+
+
+
